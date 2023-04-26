@@ -5,7 +5,7 @@
 //  Created by tornike on 26.04.23.
 //
 
-class MessageComponentViewModel {
+class TextInputComponentViewModel {
     var placeHolder:String
     var sendButtonImageName:String
     

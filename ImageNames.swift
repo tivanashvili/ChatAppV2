@@ -6,5 +6,5 @@
 //
 
 enum ImageNames {
-    public static let SendButton = "123"
+    public static let SendButton = "sendButtonImage"
 }

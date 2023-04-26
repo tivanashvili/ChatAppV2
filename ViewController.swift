@@ -9,26 +9,39 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private let messageComponentView = MessageComponentView(
-                                        frame: CGRect(),
-                                        messageComponentModel:MessageComponentViewModel(placeHolder: CommonConstants.MessageComponentPlaceHolder, sendButtonImageName: ImageNames.SendButton))
+    private let topChatView = ChatView()
+    private let separatorView = SeparatorView()
+    private let bottomChatView = ChatView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(messageComponentView)
+        view.addSubview(topChatView)
+        view.addSubview(separatorView)
+        view.addSubview(bottomChatView)
         setUpLayoutConstraints()
     }
 
     // MARK : layout constraints
     private func setUpLayoutConstraints(){
-        messageComponentView.translatesAutoresizingMaskIntoConstraints = false
+        topChatView.translatesAutoresizingMaskIntoConstraints = false
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        bottomChatView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             
-            messageComponentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            messageComponentView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            messageComponentView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            messageComponentView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+            topChatView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            topChatView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            topChatView.bottomAnchor.constraint(equalTo: separatorView.topAnchor, constant: -30),
+            topChatView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            
+            separatorView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            separatorView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            separatorView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            
+            bottomChatView.topAnchor.constraint(equalTo: separatorView.bottomAnchor),
+            bottomChatView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            bottomChatView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bottomChatView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ])
     }
 
